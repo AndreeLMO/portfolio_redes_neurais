@@ -1,4 +1,4 @@
-# portfolio_andre
+# portfolio_redes_neurais
 Projetos de Data Science e Analytics
 # 🩺 Detecção de Neoplasias Mamárias com Redes Neurais Convolucionais
 
