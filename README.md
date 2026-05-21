@@ -24,7 +24,7 @@ O objetivo não é substituir o médico, mas **auxiliar o diagnóstico clínico*
 ## 🗂️ Estrutura do Repositório
 
 ```
-breast-cancer-cnn/
+portfolio_redes_neurais/
 │
 ├── notebook/
 │   └── breast_cancer_classification.ipynb   # Notebook principal com todo o pipeline
@@ -83,6 +83,15 @@ Classificação direta das imagens de mamografia usando a rede pré-treinada Res
 
 **Nota sobre a escolha:** apesar do SMOTEENN apresentar recall de classe 1 mais alto (81%), a remoção de dados pelo ENN comprometeu acurácia e precisão. O modelo SMOTE+PCA+RF mostrou melhor equilíbrio entre todas as métricas, sendo mais confiável para aplicação clínica.
 
+### Matrizes de Confusão
+![Matrizes de Confusão](results/confusion_matrices.png)
+
+### Curvas ROC
+![Curvas ROC](results/roc_curves.png)
+
+### Curvas Precision-Recall
+![Curvas Precision-Recall](results/precision_recall_curves.png)
+
 ---
 
 ## 🧰 Tecnologias Utilizadas
@@ -102,8 +111,8 @@ Classificação direta das imagens de mamografia usando a rede pré-treinada Res
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/breast-cancer-cnn.git
-cd breast-cancer-cnn
+git clone https://github.com/AndreeLMO/portfolio_redes_neurais.git
+cd portfolio_redes_neurais
 
 # 2. Instale as dependências
 pip install -r requirements.txt
@@ -128,6 +137,9 @@ jupyter notebook notebook/breast_cancer_classification.ipynb
 ## 📄 Publicação
 
 > Oliveira, A. L. M.; Bampi, H. *Utilização de redes neurais convolucionais para identificação de neoplasias mamárias.* Trabalho de Conclusão de Curso — Especialização em Data Science & Analytics, USP/ESALQ, 2025.
+
+---
+
 
 ---
 
