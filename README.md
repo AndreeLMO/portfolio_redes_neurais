@@ -140,13 +140,10 @@ jupyter notebook notebook/breast_cancer_classification.ipynb
 
 ---
 
-
----
-
 ## 📬 Contato
 
 **André Luiz Magalhães de Oliveira**  
 Graduação em Física Médica — USP Ribeirão Preto  
 📧 andreluizmoliveira7@gmail.com  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/seu-perfil)
-[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?style=flat-square&logo=github)](https://github.com/seu-usuario)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/andreluizmoliveira7)
+[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?style=flat-square&logo=github)](https://github.com/AndreeLMO)
