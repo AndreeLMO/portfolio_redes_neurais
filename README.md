@@ -1,149 +1,107 @@
-# portfolio_redes_neurais
-Projetos de Data Science e Analytics
 # 🩺 Detecção de Neoplasias Mamárias com Redes Neurais Convolucionais
 
-> TCC — MBA em Data Science & Analytics | USP/ESALQ 2025  
-> Autor: André Luiz Magalhães de Oliveira
+> **Trabalho de Conclusão de Curso** — MBA em Data Science & Analytics | USP/ESALQ 2025  
+> **Autor:** André Luiz Magalhães de Oliveira  
+> **Orientador:** Hugo Bampi
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)](https://tensorflow.org)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.x-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
 [![Status](https://img.shields.io/badge/Status-Concluído-brightgreen?style=flat-square)](.)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
 ---
 
 ## 📌 Visão Geral
 
-Este projeto investiga o uso de **Redes Neurais Convolucionais (ResNet50)** combinadas com técnicas de balanceamento e redução de dimensionalidade para **classificação de neoplasias mamárias** em imagens de mamografia.
+Este projeto investiga a utilização de **Redes Neurais Convolucionais (ResNet50)** para a identificação e classificação de neoplasias mamárias em imagens de mamografia. O câncer de mama é um dos tipos mais recorrentes no Brasil, e o diagnóstico precoce é fundamental para o sucesso do tratamento.
 
-O objetivo não é substituir o médico, mas **auxiliar o diagnóstico clínico**, melhorando a detecção precoce do câncer de mama — que representa mais de 73.000 novos casos estimados no Brasil até 2025.
+O objetivo deste trabalho é auxiliar o diagnóstico clínico através de algoritmos de aprendizado de máquina, aumentando a precisão na identificação de lesões malignas e benignas.
 
----
-
-## 🗂️ Estrutura do Repositório
-
-```
-portfolio_redes_neurais/
-│
-├── notebook/
-│   └── breast_cancer_classification.ipynb   # Notebook principal com todo o pipeline
-│
-├── data/
-│   └── README_data.md                       # Instruções para download do dataset CBIS-DDSM
-│
-├── results/
-│   ├── confusion_matrices/                  # Matrizes de confusão dos modelos
-│   └── roc_curves/                          # Curvas ROC e Precision-Recall
-│
-└── README.md
-```
-
----
-
-## 📊 Dataset
-
-**CBIS-DDSM** — *Curated Breast Imaging Subset of Digital Database for Screening Mammography*  
-Fonte: [The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/collection/cbis-ddsm/)
-
-- Imagens de mamografia em formato DICOM
-- Arquivos `.csv` com metadados para treino e teste
-- Parâmetros utilizados: **densidade da mama**, **presença/forma de nódulos** e **tipo de microcalcificações**
-- Divisão: **75% treino / 25% teste**
+![Exemplo de Mamografias](assets/images/figura1_mamografias.png)
+*Figura 1: a) Mama sem calcificações; b) Mama fibrosa com calcificações (Fonte: CBIS-DDSM)*
 
 ---
 
 ## ⚙️ Metodologia
 
-O pipeline foi desenvolvido em etapas progressivas, com foco em resolver o **desbalanceamento de classes** (mais casos negativos do que positivos no dataset):
+O desenvolvimento seguiu um pipeline estruturado, desde o pré-processamento de imagens DICOM até a avaliação de modelos complexos para lidar com o desbalanceamento de classes.
 
-### Etapa 1 — ResNet50 (baseline)
-Classificação direta das imagens de mamografia usando a rede pré-treinada ResNet50.
+![Fluxograma da Metodologia](assets/images/figura2_fluxograma.png)
+*Figura 2: Fluxograma do processo de análise e classificação.*
 
-### Etapa 2 — SMOTE + PCA + Random Forest + ResNet50
-- **SMOTE**: cria amostras sintéticas da classe minoritária para balancear o dataset  
-- **PCA**: reduz a dimensionalidade, atenuando o efeito de bordas e texturas indesejadas  
-- **Random Forest**: conjunto de árvores de decisão para reduzir overfitting e ruído
-
-### Etapa 3 — SMOTEENN + Random Forest + ResNet50
-- **SMOTEENN**: combina SMOTE com ENN (*Edited Nearest Neighbor*) para limpeza de ruído nas fronteiras de classe
-
----
-
-## 📈 Resultados
-
-| Modelo | Acurácia | Precisão (cl.1) | Recall (cl.1) | AUC-ROC |
-|---|---|---|---|---|
-| ResNet50 (baseline) | 66% | 66% | 47% | — |
-| SMOTE + PCA + RF + ResNet50 | **70%** | **61%** | **67%** | **0.77** |
-| SMOTEENN + RF + ResNet50 | 66% | 53% | 81% | 0.68 |
-
-> **Melhor modelo geral:** `SMOTE + PCA + Random Forest + ResNet50`  
-> AUC = 0.77 (classificado como "Bom" segundo escala clínica) e AP = 0.67
-
-**Nota sobre a escolha:** apesar do SMOTEENN apresentar recall de classe 1 mais alto (81%), a remoção de dados pelo ENN comprometeu acurácia e precisão. O modelo SMOTE+PCA+RF mostrou melhor equilíbrio entre todas as métricas, sendo mais confiável para aplicação clínica.
-
-### Matrizes de Confusão
-![Matrizes de Confusão](results/confusion_matrices.png)
-
-### Curvas ROC
-![Curvas ROC](results/roc_curves.png)
-
-### Curvas Precision-Recall
-![Curvas Precision-Recall](results/precision_recall_curves.png)
+### Etapas do Projeto:
+1.  **Banco de Dados:** Utilização do dataset **CBIS-DDSM** (Curated Breast Imaging Subset of Digital Database for Screening Mammography).
+2.  **Pré-processamento:** Distribuição dos dados (75% treino / 25% teste) e extração de características (raio, textura, perímetro, área, etc.).
+3.  **Modelagem:**
+    *   **ResNet50 (Baseline):** Rede neural convolucional para extração de características e classificação inicial.
+    *   **SMOTE + PCA + Random Forest:** Técnica de sobreamostragem sintética combinada com redução de dimensionalidade e florestas aleatórias para melhorar o equilíbrio entre precisão e recall.
+    *   **SMOTEENN:** Combinação de SMOTE com Edited Nearest Neighbor para limpeza de ruído.
 
 ---
 
-## 🧰 Tecnologias Utilizadas
+## 📈 Resultados e Discussão
 
-| Categoria | Biblioteca |
-|---|---|
-| Deep Learning | TensorFlow / Keras (ResNet50) |
-| Balanceamento | imbalanced-learn (SMOTE, SMOTEENN) |
-| Redução dimensional | scikit-learn (PCA) |
-| Classificação | scikit-learn (Random Forest) |
-| Análise | NumPy, Pandas |
-| Visualização | Matplotlib, Seaborn |
+Os modelos foram avaliados com base em métricas de Acurácia, Precisão, Recall e AUC-ROC. O modelo que apresentou o melhor equilíbrio para aplicação clínica foi a combinação **SMOTE + PCA + Random Forest**.
+
+### Comparação de Modelos
+
+| Modelo | Acurácia | Precisão (Classe 1) | Recall (Classe 1) | AUC-ROC |
+| :--- | :---: | :---: | :---: | :---: |
+| ResNet50 (Baseline) | 66% | 66% | 47% | - |
+| **SMOTE + PCA + RF** | **70%** | **61%** | **67%** | **0.77** |
+| SMOTEENN + RF | 66% | 53% | 81% | 0.68 |
+
+### Visualizações de Desempenho
+
+| Matriz de Confusão (SMOTE+PCA+RF) | Curvas ROC |
+| :---: | :---: |
+| ![Matriz SMOTE+PCA](assets/images/figura4_matriz_smote_pca.png) | ![Curvas ROC](assets/images/figura6_curvas_roc.png) |
+
+> **Conclusão:** O modelo SMOTE + PCA + Random Forest obteve um AUC de 0.77, classificado como "Bom" em escala clínica, demonstrando ser uma ferramenta promissora para o suporte à decisão médica.
+
+---
+
+## 🗂️ Estrutura do Repositório
+
+```text
+portfolio_redes_neurais/
+├── assets/
+│   └── images/              # Imagens e gráficos extraídos do TCC
+├── notebook/
+│   └── breast_cancer_classification.ipynb   # Pipeline completo
+├── results/                 # Gráficos gerados durante a execução
+├── README.md                # Documentação principal
+└── requirements.txt         # Dependências do projeto
+```
 
 ---
 
 ## 🚀 Como Executar
 
-```bash
-# 1. Clone o repositório
-git clone https://github.com/AndreeLMO/portfolio_redes_neurais.git
-cd portfolio_redes_neurais
-
-# 2. Instale as dependências
-pip install -r requirements.txt
-
-# 3. Baixe o dataset (instruções em data/README_data.md)
-
-# 4. Execute o notebook
-jupyter notebook notebook/breast_cancer_classification.ipynb
-```
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/AndreeLMO/portfolio_redes_neurais.git
+    ```
+2.  **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Execute o Notebook:**
+    Abra o arquivo `notebook/breast_cancer_classification.ipynb` em seu ambiente Jupyter.
 
 ---
 
-## 🔭 Trabalhos Futuros
+## 📄 Citação
 
-- Aplicar arquiteturas mais especializadas: **Vision Transformers (ViT)** e **Swin Transformers**
-- Ajuste fino de hiperparâmetros para aumentar recall de classe 1 para a faixa ideal (80–90%)
-- Avaliação com curvas ROC por subgrupo (tipo de tumor, densidade da mama)
-- Integração com sistema de apoio à decisão clínica
+Se este trabalho for útil para sua pesquisa, por favor cite:
 
----
-
-## 📄 Publicação
-
-> Oliveira, A. L. M.; Bampi, H. *Utilização de redes neurais convolucionais para identificação de neoplasias mamárias.* Trabalho de Conclusão de Curso — Especialização em Data Science & Analytics, USP/ESALQ, 2025.
+> OLIVEIRA, André Luiz Magalhães de; BAMPI, Hugo. **Utilização de redes neurais convolucionais para identificação de neoplasias mamárias.** 2025. Trabalho de Conclusão de Curso (Especialização em Data Science & Analytics) - USP/ESALQ, Piracicaba, 2025.
 
 ---
 
 ## 📬 Contato
 
 **André Luiz Magalhães de Oliveira**  
-Graduação em Física Médica — USP Ribeirão Preto  
-📧 andreluizmoliveira7@gmail.com  
+📧 [andreluizmoliveira7@gmail.com](mailto:andreluizmoliveira7@gmail.com)  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/andreluizmoliveira7)
 [![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?style=flat-square&logo=github)](https://github.com/AndreeLMO)
