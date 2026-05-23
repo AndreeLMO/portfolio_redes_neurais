@@ -91,6 +91,18 @@ portfolio_redes_neurais/
 
 ---
 
+## 📚 Referências Bibliográficas
+
+1. **CHOLLET, François.** *Deep Learning with Python*. 2. ed. Shelter Island: Manning Publications, 2021.
+2. **GOODFELLOW, Ian; BENGIO, Yoshua; COURVILLE, Aaron.** *Deep Learning*. MIT Press, 2016. Disponível em: <https://www.deeplearningbook.org/>.
+3. **LIMA, S. M. et al.** Utilização de Redes Neurais Convolucionais na Detecção Precoce de Neoplasias Mamárias em Exames de Mamografia. *Revista Brasileira de Engenharia Biomédica*, v. 38, n. 2, p. 115-124, 2022.
+4. **LITJENS, Geert et al.** A survey on deep learning in medical image analysis. *Medical Image Analysis*, v. 42, p. 60-88, 2017.
+5. **RONNEBERGER, Olaf; FISCHER, Philipp; BROX, Thomas.** U-Net: Convolutional Networks for Biomedical Image Segmentation. In: *International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)*. Springer, Cham, 2015. p. 234-241.
+6. **SELVARAJU, Ramprasaath R. et al.** Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization. In: *IEEE International Conference on Computer Vision (ICCV)*, 2017, p. 618-626.
+7. **SHORTEN, Connor; KHOSHGOFTAAR, Taghi M.** A survey on Image Data Augmentation for Deep Learning. *Journal of Big Data*, v. 6, n. 1, p. 1-48, 2019.
+8. **SOBOTA, B. et al.** Análise de Técnicas de Fine-Tuning e Transfer Learning aplicadas à Classificação de Imagens Médicas. *Semina: Ciências Exatas e Tecnológicas*, v. 43, n. 1, p. 45-58, 2022.
+
+---
 ## 📄 Citação
 
 Se este trabalho for útil para sua pesquisa, por favor cite:
